@@ -1,74 +1,25 @@
-# Load pickled data
-import pickle
-import os.path
-import zipfile
-from urllib.request import urlretrieve
+# Load original pickled project data
+import reusable.file_loader as fl
+from reusable.file_loader import ProjectData
+from reusable.file_loader import ProjectDataSet
+import os
 
-class ProjectData:
-	def __init__(self, train, test):
-		self.train = ProjectDataSet(train)
-		self.test = ProjectDataSet(test)
-
-class ProjectDataSet:
-	def __init__(self, data):
-		self.features = data['features']
-		self.labels = data['labels']
-
-def load_data():
+def load_project_data():
 	print("Loading project data.")
-	training_file, testing_file = _file_paths()
+	train_file_name = "train.p"
+	test_file_name = "test.p"
+	url = "https://d17h27t6h515a5.cloudfront.net/topher/2016/November/581faac4_traffic-signs-data/traffic-signs-data.zip"
+	zip_file_name = "traffic-signs-data.zip"
 
-	if os.path.isfile(training_file) == False:
-		print("Unable to find unzip data files.")
-		_unzip_traffic_data()
+	fl.download_file(url, zip_file_name)
+	if os.path.isfile(fl.data_file_path(train_file_name)) == False:
+		print("Unable to find unzip data files. Unzipping now.")
+		fl.unzip_data(zip_file_name)
 	else:
 		print("Data already unzipped.")
 
-	return _open_pickle(training_file, testing_file)
+	train = fl.open_pickle_file(train_file_name)
+	test = fl.open_pickle_file(test_file_name)
 
-def _file_paths():
-	BASE_DIR = _absolute_base_dir()
-	training_file = BASE_DIR + "/test.p"
-	testing_file = BASE_DIR + "/test.p"
-	return (training_file, testing_file)
-
-def _absolute_base_dir():
-	base_dir_name = "CarND-Traffic-Sign-Classifier-Project"
-	base_dir_list = os.path.dirname(os.path.realpath(__file__)).split("/")
-	i = base_dir_list.index(base_dir_name)
-	return "/".join(base_dir_list[0:i+1])
-
-def _unzip_traffic_data():
-	local_traffic_file = "traffic-signs-data.zip"
-	absolute_traffic_zip_file = _absolute_base_dir() + "/" + local_traffic_file
-	if os.path.isfile(absolute_traffic_zip_file) == False:
-		url = "https://d17h27t6h515a5.cloudfront.net/topher/2016/November/581faac4_traffic-signs-data/traffic-signs-data.zip"
-		_download(url, absolute_traffic_zip_file)
-
-	_unzip(absolute_traffic_zip_file, _absolute_base_dir())
-
-def _unzip(zip_file, folder):
-	with zipfile.ZipFile(zip_file, "r") as zip_ref:
-		print("Extracting zipfile " + zip_file + "...")
-		zip_ref.extractall(folder)
-
-def _download(url, file):
-    """
-    Download file from <url>
-    :param url: URL to file
-    :param file: Local file path
-    """
-    if not os.path.isfile(file):
-        print('Downloading ' + file + '...')
-        urlretrieve(url, file)
-        print('Download Finished!')
-
-def _open_pickle(train_file, test_file):
 	print("Returning ProjectData(train, test).")
-
-	with open(train_file, mode='rb') as f:
-		train = pickle.load(f)
-	with open(test_file, mode='rb') as f:
-		test = pickle.load(f)
-
 	return ProjectData(train, test)
