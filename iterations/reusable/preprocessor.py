@@ -17,14 +17,35 @@ def preprocess(features, labels, name="name"):
 	return (features, labels)
 
 def to_greyscale(X_data):
-  return [rgb2gray(image) for image in X_data]
+	result = [None for i in range(len(X_data))]
+	for index in range(len(X_data)):
+		if index % 1000 == 0:
+			print("Converting image #"+str(index), "to greyscale.")
+		result[index] = rgb2gray(X_data[index])
+	return np.array(result, dtype='float32')
 
 def rgb2gray(rgb):
     gray = np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
     return [[[val] for val in row] for row in gray]
 
 def scale(X_data):
-  return np.divide(np.subtract(np.array(X_data, dtype='float32'), 128), 128)	
+  return np.divide(np.subtract(X_data, 128), 128)
+
+def load_greyscale_train_data():
+	train_file = "train_greyscale_preprocessed.p"
+
+	if os.path.isfile(fl.data_file_path(train_file)) == False:
+		orig_data = load_project_data().train
+		print("Unable to find pre-preprocessed greyscale data.")
+		X_train, y_train = (orig_data.features, orig_data.labels)
+		X_train = to_greyscale(X_train)
+		print("Finished converting training images to grey scale.")
+		fl.save_pickle_file(train_file, (X_train, y_train))
+	else:
+		print("Loading pre-preprocessed greyscale data...")
+		X_train, y_train = fl.open_pickle_file(train_file)
+
+	return ProjectDataSet({'features': X_train, 'labels': y_train })
 
 def load_preprocessed_data():
 	train_file = "train_preprocessed.p"
