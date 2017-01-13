@@ -19,7 +19,7 @@ def preprocess(features, labels, name="name"):
 def to_greyscale(X_data):
 	result = [None for i in range(len(X_data))]
 	for index in range(len(X_data)):
-		if index % 1000 == 0:
+		if index % 10000 == 0:
 			print("Converting image #"+str(index), "to greyscale.")
 		result[index] = rgb2gray(X_data[index])
 	return np.array(result, dtype='float32')
