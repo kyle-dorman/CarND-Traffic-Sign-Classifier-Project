@@ -32,10 +32,6 @@ def rotate_image(img, angle=20.0):
 	M = cv2.getRotationMatrix2D((cols/2,rows/2),rotation_angle,1)
 	return cv2.warpAffine(img,M,(cols,rows))
 
-def darken_image(img, gamma_delta=0.5):
-	gamma = 1 - random.uniform(0.0, gamma_delta)
-	return _change_image_gamma(img, gamma)
-
 def change_image_gamma(img, min_gamma=0.7, max_gamma=2.0):
 	# build a lookup table mapping the pixel values [0, 255] to
 	# their adjusted gamma values
@@ -46,7 +42,6 @@ def change_image_gamma(img, min_gamma=0.7, max_gamma=2.0):
  
 	# apply gamma correction using the lookup table
 	return cv2.LUT(img, table)
-
 
 def append_jiggered_data(X_train, y_train):
 	print("Creating jiggered data...")
