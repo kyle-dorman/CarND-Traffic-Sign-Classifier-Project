@@ -1,2 +1,2 @@
-model_checkpoint_path: "inception-testing"
-all_model_checkpoint_paths: "inception-testing"
+model_checkpoint_path: "ck5cd8_id8ir8_id16ir8_fcd8_dp0.5_fcd10_fcd8_e1r0.001b1"
+all_model_checkpoint_paths: "ck5cd8_id8ir8_id16ir8_fcd8_dp0.5_fcd10_fcd8_e1r0.001b1"

@@ -8,7 +8,9 @@ class Batch:
         return BatchIterator(self)
     
     def next(self, start):
-        if start > len(self.features):
+        if self.batch_size == 0:
+            raise StopIteration
+        if start >= len(self.features):
             raise StopIteration 
         else:
             end = min(start + self.batch_size, len(self.features))
@@ -27,6 +29,5 @@ class BatchIterator:
             result = self.batch.next(self.batch_index)
         except StopIteration:
             raise StopIteration
-        
         self.batch_index = self.batch_index + self.batch.batch_size
         return result
