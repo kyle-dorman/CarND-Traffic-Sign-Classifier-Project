@@ -4,7 +4,7 @@ import reusable.file_loader as fl
 from reusable.file_loader import ProjectDataSet
 
 def load():
-    name = "web_images"
+    name = "web_images.p"
     print("Loading web image data.")
     
     if os.path.isfile(fl.data_file_path(name)) == False:
@@ -33,7 +33,6 @@ def image_file(name):
     extensions = ['.jpg', '.jpeg']
     for ext in extensions:
         full_path = fl.absolute_base_dir("web_images") + "/" + name + ext
-        print(full_path)
         if os.path.isfile(full_path):
             return full_path
     return None

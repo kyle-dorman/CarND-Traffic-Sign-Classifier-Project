@@ -7,3 +7,4 @@ models
 *.p
 *.zip
 .DS_Store
+iterations/early_stopping*
