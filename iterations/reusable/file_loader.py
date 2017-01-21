@@ -16,15 +16,15 @@ class ProjectDataSet:
 		self.labels = data['labels']
 
 def data_file_path(file_name):
-	BASE_DIR = absolute_base_dir()
+	BASE_DIR = absolute_base_dir('data')
 	abs_file_name = BASE_DIR + "/" + file_name
 	return abs_file_name
 
-def absolute_base_dir():
+def absolute_base_dir(name):
 	base_dir_name = "CarND-Traffic-Sign-Classifier-Project"
 	base_dir_list = os.path.dirname(os.path.realpath(__file__)).split("/")
 	i = base_dir_list.index(base_dir_name)
-	return "/".join(base_dir_list[0:i+1]) + "/data"
+	return "/".join(base_dir_list[0:i+1]) + "/" + name
 
 def download_file(url, file):
 	"""
@@ -44,7 +44,7 @@ def unzip_data(file_name):
 	absolute_file = data_file_path(file_name)
 	with zipfile.ZipFile(absolute_file, "r") as zip_ref:
 		print("Extracting zipfile " + absolute_file + "...")
-		zip_ref.extractall(absolute_base_dir())
+		zip_ref.extractall(absolute_base_dir('data'))
 
 def open_pickle_file(file_name):
 	print("Unpickling file " + file_name + ".")

@@ -6,3 +6,4 @@ models
 *.swp
 *.p
 *.zip
+.DS_Store
