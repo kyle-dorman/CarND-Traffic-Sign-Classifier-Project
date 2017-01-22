@@ -1,2 +1,2 @@
-model_checkpoint_path: "/Users/kyledorman/Documents/carnd/CarND-Traffic-Sign-Classifier-Project/iterations/early_stopping_checkpoint"
-all_model_checkpoint_paths: "/Users/kyledorman/Documents/carnd/CarND-Traffic-Sign-Classifier-Project/iterations/early_stopping_checkpoint"
+model_checkpoint_path: "/Users/kyledorman/Documents/carnd/CarND-Traffic-Sign-Classifier-Project/iterations/ck5cd8_id8ir8_id16ir8_fcd8_dp0-5_fcd10_fcdNone_traffic_sign_classifier-model.ckpt"
+all_model_checkpoint_paths: "/Users/kyledorman/Documents/carnd/CarND-Traffic-Sign-Classifier-Project/iterations/ck5cd8_id8ir8_id16ir8_fcd8_dp0-5_fcd10_fcdNone_traffic_sign_classifier-model.ckpt"
