@@ -6,8 +6,9 @@ from urllib.request import urlretrieve
 import pickle
 
 class ProjectData:
-	def __init__(self, train, test):
+	def __init__(self, train, valid, test):
 		self.train = ProjectDataSet(train)
+		self.valid = ProjectDataSet(valid)
 		self.test = ProjectDataSet(test)
 
 class ProjectDataSet:

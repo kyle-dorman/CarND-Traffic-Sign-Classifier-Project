@@ -68,13 +68,16 @@ def append_jiggered_data(X_train, y_train):
 	return shuffle(X_train_jiggered, y_train_jiggered)
 
 def load_jiggered_data():
-	jiggered_file = "train_jiggered.p"
+	train_jiggered_file = "train_jiggered.p"
 
-	if os.path.isfile(fl.data_file_path(jiggered_file)) == False:
+	if os.path.isfile(fl.data_file_path(train_jiggered_file)) == False:
 		data = load_project_data()
-		X_train_jiggered, y_train_jiggered = append_jiggered_data(data.train.features, data.train.labels)
-		fl.save_pickle_file(jiggered_file, (X_train_jiggered, y_train_jiggered))
+		X_train, y_train = shuffle(data.train.features, data.train.labels)
+
+		X_train_jiggered, y_train_jiggered = append_jiggered_data(X_train, y_train)
+		fl.save_pickle_file(train_jiggered_file, (X_train_jiggered, y_train_jiggered))
 	else:
 		X_train_jiggered, y_train_jiggered = fl.open_pickle_file(jiggered_file)
 		X_train_jiggered, y_train_jiggered = shuffle(X_train_jiggered, y_train_jiggered)
+
 	return ProjectDataSet({'features': X_train_jiggered, 'labels': y_train_jiggered })
