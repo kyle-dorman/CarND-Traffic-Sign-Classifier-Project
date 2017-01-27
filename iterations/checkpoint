@@ -1,2 +1,2 @@
-model_checkpoint_path: "/Users/kyledorman/Documents/carnd/CarND-Traffic-Sign-Classifier-Project/iterations/ck5cd8_id8ir8_id16ir8_fcd8_dp0-5_fcd10_fcd43_traffic_sign_classifier-model.ckpt"
-all_model_checkpoint_paths: "/Users/kyledorman/Documents/carnd/CarND-Traffic-Sign-Classifier-Project/iterations/ck5cd8_id8ir8_id16ir8_fcd8_dp0-5_fcd10_fcd43_traffic_sign_classifier-model.ckpt"
+model_checkpoint_path: "/home/carnd/CarND-Traffic-Sign-Classifier-Project/iterations/ck5cd16_id32ir16_id64ir16_dp0-8_fcd1024_dp0-6_fcd512_dp0-5_fcd43_traffic_sign_classifier-model"
+all_model_checkpoint_paths: "/home/carnd/CarND-Traffic-Sign-Classifier-Project/iterations/ck5cd16_id32ir16_id64ir16_dp0-8_fcd1024_dp0-6_fcd512_dp0-5_fcd43_traffic_sign_classifier-model"
