@@ -21,10 +21,11 @@ def load_project_data():
 
 	train = fl.open_pickle_file(train_file_name)
 	X_train, y_train = shuffle(train['features'], train['labels'])
-	X_train, X_valid, y_train, y_valid = train_test_split(X_train, y_train)
+	X_train, X_valid, y_train, y_valid = train_test_split(X_train, y_train, random_state=42)
 	test = fl.open_pickle_file(test_file_name)
 
-	print("Returning ProjectData(train, test).")
+	print("Returning ProjectData(train, training, test)")
+	
 	return ProjectData({'features': X_train, 'labels': y_train }, 
 		{'features': X_valid, 'labels': y_valid },
 		test)
